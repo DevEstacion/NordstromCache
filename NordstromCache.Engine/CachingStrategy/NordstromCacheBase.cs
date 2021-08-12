@@ -6,6 +6,7 @@ namespace NordstromCache.Engine.CachingStrategy
 {
     internal abstract class NordstromCacheBase : INordstromCache
     {
+        // adding a lock to handle concurrency
         private readonly object _lock;
         private readonly int _sizeLimit;
         internal readonly Dictionary<object, CacheEntry> Cache;

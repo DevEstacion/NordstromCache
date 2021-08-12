@@ -5,6 +5,8 @@ namespace NordstromCache.Engine.CachingStrategy
 {
     internal sealed class EvictOnFullNordstromCache : NordstromCacheBase
     {
+        // The purpose of this is to have a built in way to say what's the last
+        // and move something to the first to simulate what's the least and recently used cache
         internal readonly LinkedList<CacheEntry> CacheUsage;
 
         public EvictOnFullNordstromCache(int sizeLimit) : base(sizeLimit)

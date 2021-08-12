@@ -3,6 +3,10 @@ using NordstromCache.Engine.Models;
 
 namespace NordstromCache.Engine.CachingStrategy
 {
+    /// <summary>
+    /// This class just follows what a Queue does and implements it in Caching
+    /// Basically, FIFO (First in First out)
+    /// </summary>
     internal sealed class QueuedLimitNordstromCache : NordstromCacheBase
     {
         internal readonly Queue<CacheEntry> CacheEntryQueue;
