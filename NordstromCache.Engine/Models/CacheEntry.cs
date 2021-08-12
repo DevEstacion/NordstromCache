@@ -2,20 +2,22 @@
 
 namespace NordstromCache.Engine.Models
 {
-    public class CacheEntry
+    internal sealed class CacheEntry
     {
-        public object Entry { get; }
-        public DateTime LastUsed { get; private set; }
-
-        public CacheEntry(object entry)
+        public CacheEntry(object key, object entry)
         {
+            Key = key;
             Entry = entry;
             UpdateLastUsed();
         }
 
+        public object Key { get; }
+        public object Entry { get; }
+        public long LastUsedTicks { get; private set; }
+
         public void UpdateLastUsed()
         {
-            LastUsed = DateTime.Now;
+            LastUsedTicks = DateTime.Now.Ticks;
         }
     }
 }

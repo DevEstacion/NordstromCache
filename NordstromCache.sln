@@ -2,6 +2,10 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NordstromCache.Engine", "NordstromCache.Engine\NordstromCache.Engine.csproj", "{58F17898-F0E8-4CC6-A2AA-45049539D70E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NordstromCache.Client", "NordstromCache.Client\NordstromCache.Client.csproj", "{EFE00852-5378-4F17-8F1E-E6CE83560FC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NordstromCache.Engine.Tests", "NordstromCache.Engine.Tests\NordstromCache.Engine.Tests.csproj", "{BB8F07E7-F3CF-46E2-9730-B4760D6A4B23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +16,13 @@ Global
 		{58F17898-F0E8-4CC6-A2AA-45049539D70E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58F17898-F0E8-4CC6-A2AA-45049539D70E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58F17898-F0E8-4CC6-A2AA-45049539D70E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFE00852-5378-4F17-8F1E-E6CE83560FC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFE00852-5378-4F17-8F1E-E6CE83560FC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFE00852-5378-4F17-8F1E-E6CE83560FC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFE00852-5378-4F17-8F1E-E6CE83560FC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB8F07E7-F3CF-46E2-9730-B4760D6A4B23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB8F07E7-F3CF-46E2-9730-B4760D6A4B23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB8F07E7-F3CF-46E2-9730-B4760D6A4B23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB8F07E7-F3CF-46E2-9730-B4760D6A4B23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

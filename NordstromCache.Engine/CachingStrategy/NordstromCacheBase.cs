@@ -7,7 +7,7 @@ namespace NordstromCache.Engine.CachingStrategy
     internal abstract class NordstromCacheBase : INordstromCache
     {
         private readonly int _sizeLimit;
-        protected readonly Dictionary<object, CacheEntry> Cache;
+        internal readonly Dictionary<object, CacheEntry> Cache;
 
         protected NordstromCacheBase(int sizeLimit)
         {
@@ -17,8 +17,8 @@ namespace NordstromCache.Engine.CachingStrategy
 
         public void Add(object key, object value)
         {
-            var oldEntry = Cache[key];
-            var newEntry = new CacheEntry(value);
+            Cache.TryGetValue(key, out var oldEntry);
+            var newEntry = new CacheEntry(key, value);
             Cache[key] = newEntry;
             OnAdd(oldEntry, newEntry);
 
@@ -29,7 +29,7 @@ namespace NordstromCache.Engine.CachingStrategy
         {
             if (!Cache.TryGetValue(key, out var foundObj)) return null;
             OnGet(foundObj);
-            return foundObj;
+            return foundObj.Entry;
         }
 
         public bool Exist(object key)

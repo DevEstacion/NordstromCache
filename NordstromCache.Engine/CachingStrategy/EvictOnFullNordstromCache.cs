@@ -1,37 +1,39 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using NordstromCache.Engine.Models;
 
 namespace NordstromCache.Engine.CachingStrategy
 {
     internal sealed class EvictOnFullNordstromCache : NordstromCacheBase
     {
-        private readonly SortedDictionary<long, CacheEntry> _cacheUsage;
+        internal readonly SortedDictionary<long, CacheEntry> CacheUsage;
 
         public EvictOnFullNordstromCache(int sizeLimit) : base(sizeLimit)
         {
-            _cacheUsage = new SortedDictionary<long, CacheEntry>();
+            CacheUsage = new SortedDictionary<long, CacheEntry>();
         }
 
         protected override void OnAdd(CacheEntry oldEntry, CacheEntry newEntry)
         {
-            _cacheUsage[newEntry.LastUsed.Ticks] = newEntry;
-            _cacheUsage.Remove(oldEntry.LastUsed.Ticks);
+            CacheUsage[newEntry.LastUsedTicks] = newEntry;
+            if (oldEntry != null) CacheUsage.Remove(oldEntry.LastUsedTicks);
         }
 
         protected override void OnGet(CacheEntry foundEntry)
         {
-            _cacheUsage[foundEntry.LastUsed.Ticks].UpdateLastUsed();
+            CacheUsage[foundEntry.LastUsedTicks].UpdateLastUsed();
         }
 
         protected override void OnExist(CacheEntry foundEntry)
         {
-            _cacheUsage[foundEntry.LastUsed.Ticks].UpdateLastUsed();
+            CacheUsage[foundEntry.LastUsedTicks].UpdateLastUsed();
         }
 
         protected override void PerformEviction()
         {
-            var leastUsedCacheEntry = _cacheUsage[0];
-            Cache.Remove(leastUsedCacheEntry);
+            var leastUsedCacheEntry = CacheUsage.ElementAt(0);
+            Cache.Remove(leastUsedCacheEntry.Value.Key);
+            CacheUsage.Remove(leastUsedCacheEntry.Key);
         }
     }
 }
