@@ -5,21 +5,22 @@ namespace NordstromCache.Engine.CachingStrategy
 {
     internal sealed class QueuedLimitNordstromCache : NordstromCacheBase
     {
-        private readonly Queue<CacheEntry> _cacheEntryQueue;
+        internal readonly Queue<CacheEntry> CacheEntryQueue;
 
         public QueuedLimitNordstromCache(int sizeLimit) : base(sizeLimit)
         {
-            _cacheEntryQueue = new Queue<CacheEntry>();
+            CacheEntryQueue = new Queue<CacheEntry>();
         }
 
         protected override void OnAdd(CacheEntry _, CacheEntry newEntry)
         {
-            _cacheEntryQueue.Enqueue(newEntry);
+            CacheEntryQueue.Enqueue(newEntry);
         }
 
         protected override void PerformEviction()
         {
-            _cacheEntryQueue.TryDequeue(out _);
+            CacheEntryQueue.TryDequeue(out var dequeuedCacheEntry);
+            Cache.Remove(dequeuedCacheEntry.Key);
         }
     }
 }
