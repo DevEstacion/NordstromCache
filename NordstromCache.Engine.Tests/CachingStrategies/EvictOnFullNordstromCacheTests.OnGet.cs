@@ -1,4 +1,3 @@
-using System;
 using NordstromCache.Engine.CachingStrategy;
 using Xunit;
 
